@@ -78,7 +78,6 @@ body, html {
     font-size: 1.6em; /* 字體大小 */
     color: #ADD8E6; /* 淺藍色文字 */
     margin-bottom: 30px; /* 底部間距 */
-    font-style: italic; /* 斜體 */
     line-height: 1.4;
     word-wrap: break-word;
     overflow-wrap: break-word;
