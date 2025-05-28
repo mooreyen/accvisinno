@@ -52,16 +52,16 @@ body, html {
 .content-wrapper {
     position: relative; /* 讓其能疊加在背景圖片上 */
     z-index: 1; /* 確保在背景圖片之上 */
-    width: 100%; /* **讓背景色填滿整個水平寬度** */
-    min-height: 100vh; /* **讓背景色垂直至少填滿視窗高度** */
+    width: 100%; /* 讓背景色填滿整個水平寬度 */
+    min-height: 100vh; /* 讓背景色垂直至少填滿視窗高度 */
     height: auto; /* 高度根據內容自動調整 */
-    background-color: rgba(0, 0, 0, 0.5); /* **半透明背景色在這裡** */
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景色在這裡 */
     display: flex;
     flex-direction: column;
     justify-content: center; /* 讓子元素 content 垂直居中 */
     align-items: center; /* 讓子元素 content 水平居中 */
     box-sizing: border-box;
-    padding-bottom: 80px; /* 為固定表單預留空間，避免內容被遮擋 */
+    padding-top: 80px; /* 為固定表單預留頂部空間，避免內容被遮擋 */
 }
 
 /* --- 原來的 content 樣式 (只負責內容居中與限制寬度) --- */
@@ -154,11 +154,11 @@ body, html {
     overflow-wrap: break-word;
 }
 
-/* --- Formspree.io 表單區塊樣式 (固定在右下角) --- */
+/* --- Formspree.io 表單區塊樣式 (固定在右上方) --- */
 .formspree-form-section {
     position: fixed; /* 讓表單固定在視窗中 */
     right: 20px;     /* 距離右邊 20px */
-    bottom: 20px;    /* 距離底部 20px */
+    top: 80px;       /* 距離頂部 80px (給 LOGO 和頂部間距預留空間) */
     z-index: 1000;   /* 確保在最上層 */
 
     width: 100%; /* 確保在小螢幕下有最大寬度 */
@@ -170,8 +170,8 @@ body, html {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* 更明顯的發光效果 */
     box-sizing: border-box; /* 確保 padding 不會導致溢出 */
 
-    /* 移除之前的 margin-top 和 auto margins */
-    margin-top: 0;
+    /* 移除之前的底部間距和 auto margins */
+    margin-bottom: 0;
     margin-left: unset;
     margin-right: unset;
 }
@@ -249,7 +249,7 @@ body, html {
         left: 15px;
     }
     .content-wrapper {
-        padding-bottom: 70px; /* 調整底部預留空間 */
+        padding-top: 70px; /* 調整頂部預留空間 */
     }
     .content {
         padding: 15px; /* 調整內邊距 */
@@ -264,7 +264,7 @@ body, html {
     .p5 { font-size: 1em; }
     .formspree-form-section {
         right: 15px;     /* 距離右邊調整 */
-        bottom: 15px;    /* 距離底部調整 */
+        top: 70px;    /* 距離頂部調整 */
         max-width: 350px; /* 調整最大寬度 */
         padding: 15px;
     }
@@ -282,7 +282,7 @@ body, html {
         left: 10px;
     }
     .content-wrapper {
-        padding-bottom: 25px; /* **重要：在手機上恢復內容區塊底部，表單不再固定** */
+        padding-top: 25px; /* **重要：在手機上恢復內容區塊頂部，表單不再固定** */
         /* 因為表單在手機上會回到內容流中 */
     }
     .content {
@@ -301,7 +301,8 @@ body, html {
     .formspree-form-section {
         position: static; /* 移除固定定位 */
         right: unset;
-        bottom: unset;
+        top: unset; /* 移除 top */
+        bottom: unset; /* 移除 bottom */
         z-index: auto;
 
         margin-top: 25px; /* 與上方內容的間距 */
@@ -325,7 +326,7 @@ body, html {
         left: 5px;
     }
     .content-wrapper {
-        padding-bottom: 20px; /* 調整底部預留空間 */
+        padding-top: 20px; /* 調整頂部預留空間 */
     }
     .content {
         padding: 5px;
