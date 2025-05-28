@@ -174,6 +174,16 @@ body, html {
     margin-bottom: 0;
     margin-left: unset;
     margin-right: unset;
+
+    /* **新增漂浮動畫** */
+    animation: float 3s ease-in-out infinite; /* 設定動畫名稱、時長、時間函數、重複次數 */
+}
+
+/* **定義漂浮動畫的關鍵影格** */
+@keyframes float {
+    0% { transform: translateY(0); } /* 從原始位置開始 */
+    50% { transform: translateY(-8px); } /* 向上移動 8px (您可以調整這個值) */
+    100% { transform: translateY(0); } /* 返回原始位置 */
 }
 
 .form-title {
@@ -203,7 +213,7 @@ body, html {
     border: 1px solid #ADD8E6; /* 淺藍色邊框 */
     background-color: rgba(255, 255, 255, 0.1); /* 輕微透明背景 */
     color: #F0F8FF; /* 文字顏色 */
-    border-radius: 5px;
+    border-radius: 5phx;
     font-size: 0.95em; /* 調整字體大小 */
     box-sizing: border-box; /* 確保 padding 不會導致寬度溢出 */
     transition: border-color 0.3s ease, background-color 0.3s ease;
@@ -267,6 +277,8 @@ body, html {
         top: 70px;    /* 距離頂部調整 */
         max-width: 350px; /* 調整最大寬度 */
         padding: 15px;
+        /* 在這裡也應用動畫，但如果希望手機上不漂浮，則在下方的媒體查詢中覆寫 */
+        animation: float 3s ease-in-out infinite;
     }
     .form-title { font-size: 1.6em; }
     .contact-form label { font-size: 0.9em; }
@@ -283,7 +295,6 @@ body, html {
     }
     .content-wrapper {
         padding-top: 25px; /* **重要：在手機上恢復內容區塊頂部，表單不再固定** */
-        /* 因為表單在手機上會回到內容流中 */
     }
     .content {
         padding: 10px;
@@ -301,8 +312,8 @@ body, html {
     .formspree-form-section {
         position: static; /* 移除固定定位 */
         right: unset;
-        top: unset; /* 移除 top */
-        bottom: unset; /* 移除 bottom */
+        top: unset; 
+        bottom: unset;
         z-index: auto;
 
         margin-top: 25px; /* 與上方內容的間距 */
@@ -313,6 +324,7 @@ body, html {
         padding: 10px;
         background-color: rgba(0, 0, 0, 0.6); /* 恢復與內容區塊相似的透明度 */
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* 恢復較柔和的陰影 */
+        animation: none; /* **移除漂浮動畫，避免在手機上干擾佈局** */
     }
     .form-title { font-size: 1.5em; }
     .submit-button { font-size: 1em; padding: 8px 18px; }
