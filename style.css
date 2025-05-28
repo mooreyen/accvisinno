@@ -1,4 +1,4 @@
-/* LOGO 圖片樣式 - 保持不變 */
+/* LOGO 圖片樣式 */
 .site-logo {
     position: fixed; /* 固定在視窗中 */
     top: 20px;       /* 距離頂部 20px */
@@ -6,15 +6,19 @@
     z-index: 999;    /* 確保在所有其他元素之上 */
     max-width: 150px; /* 設定最大寬度，您可以根據 LOGO 大小調整 */
     height: auto;    /* 高度自動，保持圖片比例 */
+    /* 增加一些陰影讓 LOGO 更突出 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 5px; /* 輕微圓角 */
 }
 
-/* 網頁整體樣式 - 保持不變 */
+/* 網頁整體樣式 */
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden; /* 防止滾動條 */
+    /* 再次強制隱藏滾動條 */
+    overflow: hidden;
     font-family: Arial, sans-serif; /* 建議設定一個預設字體 */
 }
 
@@ -24,7 +28,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: hidden; /* 背景圖片本身保持 hidden，避免圖片溢出 */
     z-index: -1; /* 將圖片置於內容下方 */
 }
 
@@ -40,7 +44,7 @@ body, html {
 }
 
 .background-slideshow img.active {
-    opacity: 0.3; /* 這裡設定了背景圖片的透明度 (70% 不透明)。您可以將此值調整為 0 (完全透明) 到 1 (完全不透明) 之間。 */
+    opacity: 0.7; /* 這裡設定了背景圖片的透明度 (70% 不透明)。您可以將此值調整為 0 (完全透明) 到 1 (完全不透明) 之間。 */
 }
 
 .content {
@@ -48,17 +52,23 @@ body, html {
     z-index: 1;
     color: white; /* 內容區塊的基礎文字顏色，個別文字可被覆蓋 */
     text-align: center;
-    padding: 20px;
+    padding: 20px; /* 桌面預設內邊距 */
     background-color: rgba(0, 0, 0, 0.5); /* 半透明背景，以便內容可讀 */
-    height: 100%;
+    /* 核心修改：強制內容區塊高度為視窗高度 */
+    height: 100vh; /* 使用 vh 確保高度與視窗一致 */
+    overflow: hidden; /* 阻止內容區塊內部滾動條，如果內容超出會被裁剪 */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* 將所有內容垂直居中 */
     align-items: center;
     box-sizing: border-box; /* 確保 padding 不會導致內容溢出 */
+    /* 新增：為內容區塊設定最大寬度，並使其居中，避免在超大螢幕上內容過於分散 */
+    max-width: 960px; /* 例如，設置一個最大寬度 */
+    margin: 0 auto;   /* 居中顯示 */
 }
 
 /* --- 各行文字和圖片的獨立樣式設定 --- */
+/* 注意：這些樣式在小螢幕上會被媒體查詢覆蓋，以壓縮內容 */
 
 /* 標題: "網頁努力建置中…" */
 .h1 {
@@ -68,9 +78,8 @@ body, html {
     margin-bottom: 15px; /* 底部間距 */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* 文字陰影，更突出 */
     line-height: 1.2; /* 行高 */
-    word-wrap: break-word;
+    word-wrap: break-word; /* 確保文字不會溢出容器 */
     overflow-wrap: break-word;
-    
 }
 
 /* 第一段: "我們正在協助客戶在生產線上導入成功的機器視覺" */
@@ -78,6 +87,7 @@ body, html {
     font-size: 1.6em; /* 字體大小 */
     color: #ADD8E6; /* 淺藍色文字 */
     margin-bottom: 30px; /* 底部間距 */
+    font-style: italic; /* 斜體 */
     line-height: 1.4;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -85,9 +95,10 @@ body, html {
 
 /* 中間的 GIF 圖片: "gears-6121.gif" */
 .gif {
-    max-width: 15%; /* 圖片最大寬度，響應式 */
+    max-width: 70%; /* 圖片最大寬度，響應式 */
     height: auto;
     margin: 30px 0; /* 上下間距 */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); /* 發光效果 - 如果您想保留發光效果 */
 }
 
 /* 第二段: "你的下一站APQC" */
@@ -127,52 +138,67 @@ body, html {
 .p5 {
     font-size: 1.1em;
     color: #F0F8FF; /* 淺藍色文字 */
-    text-decoration: underline; /* 底線 */
-    margin-bottom: 0; /* 底部無間距 */
+    text-decoration: none; /* 將底線改為無，通常 email 不加底線除非是連結 */
+    margin-bottom: 0; /* 確保底部沒有額外間距 */
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
-/* --- 響應式字體大小調整 (在小螢幕上自動縮小文字) --- */
-@media (max-width: 1024px) {
-    .h1 { font-size: 2.8em; }
-    .p1 { font-size: 1.4em; }
-    .p2 { font-size: 1.6em; }
-    .p3 { font-size: 1.1em; }
-    .p4 { font-size: 1.2em; }
-    .p5 { font-size: 1em; }
-    .gif { max-width: 80%; }
-}
+/* --- 響應式調整 (Media Queries) --- */
 
-@media (max-width: 768px) {
+/* 針對平板和較大的手機 (例如 1024px 及以下) */
+@media (max-width: 1024px) {
     .site-logo {
-        max-width: 120px; /* 小螢幕下LOGO縮小 */
+        max-width: 120px;
         top: 15px;
         left: 15px;
     }
-    .h1 { font-size: 2.2em; }
-    .p1 { font-size: 1.2em; }
-    .p2 { font-size: 1.4em; }
-    .p3 { font-size: 1em; }
-    .p4 { font-size: 1.1em; }
-    .p5 { font-size: 0.9em; }
-    .gif { max-width: 90%; }
+    .content {
+        padding: 15px; /* 統一內邊距，不再額外增加底部空間，讓 flex-grow 處理 */
+    }
+    .h1 { font-size: 2.8em; }
+    .p1 { font-size: 1.4em; }
+    .gif { max-width: 75%; margin: 20px 0; } /* 縮小 GIF 的邊距 */
+    .p2 { font-size: 1.6em; margin-top: 20px; }
+    .p3 { font-size: 1.1em; }
+    .p4 { font-size: 1.2em; }
+    .p5 { font-size: 1em; }
 }
 
-@media (max-width: 480px) {
+/* 針對中等手機 (例如 768px 及以下) */
+@media (max-width: 768px) {
     .site-logo {
-        max-width: 90px; /* 更小螢幕下LOGO縮小 */
+        max-width: 100px;
         top: 10px;
         left: 10px;
     }
     .content {
-        padding: 10px; /* 縮小內邊距 */
+        padding: 10px;
     }
-    .h1 { font-size: 1.8em; }
-    .p1 { font-size: 1em; }
-    .p2 { font-size: 1.2em; }
-    .p3 { font-size: 0.9em; }
-    .p4 { font-size: 1em; }
+    .h1 { font-size: 2.2em; margin-bottom: 10px; }
+    .p1 { font-size: 1.2em; margin-bottom: 20px; }
+    .gif { max-width: 85%; margin: 15px 0; } /* 進一步縮小 GIF 邊距 */
+    .p2 { font-size: 1.4em; margin-top: 15px; }
+    .p3 { font-size: 1em; margin-bottom: 15px; }
+    .p4 { font-size: 1.1em; margin-bottom: 10px; }
+    .p5 { font-size: 0.9em; }
+}
+
+/* 針對小型手機 (例如 480px 及以下) */
+@media (max-width: 480px) {
+    .site-logo {
+        max-width: 80px;
+        top: 5px;
+        left: 5px;
+    }
+    .content {
+        padding: 5px;
+    }
+    .h1 { font-size: 1.6em; margin-bottom: 8px; }
+    .p1 { font-size: 1em; margin-bottom: 15px; }
+    .gif { max-width: 95%; margin: 10px 0; } /* 更進一步縮小 GIF 邊距 */
+    .p2 { font-size: 1.2em; margin-top: 10px; }
+    .p3 { font-size: 0.9em; margin-bottom: 10px; }
+    .p4 { font-size: 1em; margin-bottom: 8px; }
     .p5 { font-size: 0.8em; }
-    .gif { max-width: 95%; }
 }
