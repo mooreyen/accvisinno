@@ -6,6 +6,9 @@
     z-index: 999;    /* 確保在所有其他元素之上 */
     max-width: 150px; /* 設定最大寬度，您可以根據 LOGO 大小調整 */
     height: auto;    /* 高度自動，保持圖片比例 */
+    /* 增加一些陰影讓 LOGO 更突出 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 5px; /* 輕微圓角 */
 }
 
 /* 網頁整體樣式 */
@@ -42,29 +45,40 @@ body, html {
 }
 
 .background-slideshow img.active {
-    opacity: 0.3; /* 這裡設定了背景圖片的透明度 (70% 不透明)。您可以將此值調整為 0 (完全透明) 到 1 (完全不透明) 之間。 */
+    opacity: 0.7; /* 這裡設定了背景圖片的透明度 (70% 不透明)。您可以將此值調整為 0 (完全透明) 到 1 (完全不透明) 之間。 */
 }
 
+/* --- 新增的 content-wrapper 樣式 (全寬背景層) --- */
+.content-wrapper {
+    position: relative; /* 讓其能疊加在背景圖片上 */
+    z-index: 1; /* 確保在背景圖片之上 */
+    width: 100%; /* **讓背景色填滿整個水平寬度** */
+    min-height: 100vh; /* **讓背景色垂直至少填滿視窗高度** */
+    height: auto; /* 高度根據內容自動調整 */
+    background-color: rgba(0, 0, 0, 0.5); /* **半透明背景色在這裡** */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 讓子元素 content 垂直居中 */
+    align-items: center; /* 讓子元素 content 水平居中 */
+    box-sizing: border-box;
+}
+
+/* --- 原來的 content 樣式 (只負責內容居中與限制寬度) --- */
 .content {
-    position: relative;
-    z-index: 1;
     color: white; /* 內容區塊的基礎文字顏色，個別文字可被覆蓋 */
     text-align: center;
     padding: 20px; /* 桌面預設內邊距 */
-    background-color: rgba(0, 0, 0, 0.3); /* 半透明背景，以便內容可讀 */
-    /* 彈性高度：最小為視窗高度，內容多時自動擴展 */
-    min-height: 100vh;
-    height: auto; /* 讓高度根據內容自動調整 */
+    /* 背景色已移至 content-wrapper */
+    /* min-height 和 height 已移至 content-wrapper */
     overflow: visible; /* 允許內容區塊內部產生滾動條，如果內容超出 */
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* 將所有內容垂直居中 */
-    align-items: center;
+    /* 限制內容的最大寬度，並使其在 content-wrapper 中居中 */
+    max-width: 960px; /* 內容的最大寬度 */
+    width: 100%; /* 確保在小螢幕上可以佔滿可用寬度 */
     box-sizing: border-box; /* 確保 padding 不會導致內容溢出 */
 
-    max-width: 960px; /* 例如，設置一個最大寬度 */
-    margin: 0 auto;   /* 居中顯示 */
+    /* 移除 display: flex, flex-direction, justify-content, align-items, margin: 0 auto; 
+       這些現在由 content-wrapper 處理了 */
 }
 
 /* --- 各行文字和圖片的獨立樣式設定 --- */
@@ -95,9 +109,10 @@ body, html {
 
 /* 中間的 GIF 圖片: "gears-6121.gif" */
 .gif {
-    max-width: 20%; /* 圖片最大寬度，響應式 */
+    max-width: 70%; /* 圖片最大寬度，響應式 */
     height: auto;
     margin: 30px 0; /* 上下間距 */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); /* 發光效果 - 如果您想保留發光效果 */
 }
 
 /* 第二段: "你的下一站APQC" */
@@ -228,7 +243,7 @@ body, html {
     }
     .content {
         padding: 15px; /* 調整內邊距 */
-        max-width: 80%;
+        max-width: 80%; /* 內容的最大寬度佔比 */
     }
     .h1 { font-size: 2.8em; }
     .p1 { font-size: 1.4em; }
@@ -254,7 +269,7 @@ body, html {
     }
     .content {
         padding: 10px;
-        max-width: 90%;
+        max-width: 90%; /* 內容的最大寬度佔比 */
     }
     .h1 { font-size: 2.2em; margin-bottom: 10px; }
     .p1 { font-size: 1.2em; margin-bottom: 20px; }
@@ -280,7 +295,7 @@ body, html {
     }
     .content {
         padding: 5px;
-        max-width: 95%;
+        max-width: 95%; /* 內容的最大寬度佔比 */
     }
     .h1 { font-size: 1.6em; margin-bottom: 8px; }
     .p1 { font-size: 1em; margin-bottom: 15px; }
