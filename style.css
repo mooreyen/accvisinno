@@ -92,7 +92,7 @@ body, html {
 
 /* 中間的 GIF 圖片: "gears-6121.gif" */
 .gif {
-    max-width: 10%; /* 圖片最大寬度，響應式 */
+    max-width: 70%; /* 圖片最大寬度，響應式 */
     height: auto;
     margin: 30px 0; /* 上下間距 */
 }
