@@ -165,6 +165,8 @@ body, html {
     border-radius: 8px; /* 圓角邊框 */
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* 發光效果 */
     box-sizing: border-box; /* 確保 padding 不會導致溢出 */
+    margin-left: auto;   /* 新增：水平居中 */
+    margin-right: auto;  /* 新增：水平居中 */
 }
 
 .form-title {
