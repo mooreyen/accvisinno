@@ -6,7 +6,9 @@
     z-index: 999;    /* 確保在所有其他元素之上 */
     max-width: 150px; /* 設定最大寬度，您可以根據 LOGO 大小調整 */
     height: auto;    /* 高度自動，保持圖片比例 */
-    adius: 5px; /* 輕微圓角 */
+    /* 增加一些陰影讓 LOGO 更突出 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 5px; /* 輕微圓角 */
 }
 
 /* 網頁整體樣式 */
@@ -43,7 +45,7 @@ body, html {
 }
 
 .background-slideshow img.active {
-    opacity: 0.3; /* 這裡設定了背景圖片的透明度 (70% 不透明)。您可以將此值調整為 0 (完全透明) 到 1 (完全不透明) 之間。 */
+    opacity: 0.7; /* 這裡設定了背景圖片的透明度 (70% 不透明)。您可以將此值調整為 0 (完全透明) 到 1 (完全不透明) 之間。 */
 }
 
 /* --- 新增的 content-wrapper 樣式 (全寬背景層) --- */
@@ -59,6 +61,7 @@ body, html {
     justify-content: center; /* 讓子元素 content 垂直居中 */
     align-items: center; /* 讓子元素 content 水平居中 */
     box-sizing: border-box;
+    padding-bottom: 80px; /* 為固定表單預留空間，避免內容被遮擋 */
 }
 
 /* --- 原來的 content 樣式 (只負責內容居中與限制寬度) --- */
@@ -66,17 +69,12 @@ body, html {
     color: white; /* 內容區塊的基礎文字顏色，個別文字可被覆蓋 */
     text-align: center;
     padding: 20px; /* 桌面預設內邊距 */
-    /* 背景色已移至 content-wrapper */
-    /* min-height 和 height 已移至 content-wrapper */
     overflow: visible; /* 允許內容區塊內部產生滾動條，如果內容超出 */
 
     /* 限制內容的最大寬度，並使其在 content-wrapper 中居中 */
     max-width: 960px; /* 內容的最大寬度 */
     width: 100%; /* 確保在小螢幕上可以佔滿可用寬度 */
     box-sizing: border-box; /* 確保 padding 不會導致內容溢出 */
-
-    /* 移除 display: flex, flex-direction, justify-content, align-items, margin: 0 auto; 
-       這些現在由 content-wrapper 處理了 */
 }
 
 /* --- 各行文字和圖片的獨立樣式設定 --- */
@@ -110,6 +108,7 @@ body, html {
     max-width: 70%; /* 圖片最大寬度，響應式 */
     height: auto;
     margin: 30px 0; /* 上下間距 */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); /* 發光效果 - 如果您想保留發光效果 */
 }
 
 /* 第二段: "你的下一站APQC" */
@@ -155,49 +154,57 @@ body, html {
     overflow-wrap: break-word;
 }
 
-/* --- 新增的 Formspree.io 表單區塊樣式 --- */
+/* --- Formspree.io 表單區塊樣式 (固定在右下角) --- */
 .formspree-form-section {
-    width: 100%; /* 表單區塊佔滿內容區塊的寬度 */
-    max-width: 500px; /* 表單的最大寬度 */
-    margin-top: 40px; /* 與上方內容的間距 */
+    position: fixed; /* 讓表單固定在視窗中 */
+    right: 20px;     /* 距離右邊 20px */
+    bottom: 20px;    /* 距離底部 20px */
+    z-index: 1000;   /* 確保在最上層 */
+
+    width: 100%; /* 確保在小螢幕下有最大寬度 */
+    max-width: 400px; /* 限制表單的最大寬度 */
+    
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.6); /* 半透明背景 */
+    background-color: rgba(0, 0, 0, 0.7); /* 半透明背景，比內容區塊稍暗一些以區分 */
     border-radius: 8px; /* 圓角邊框 */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* 發光效果 */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* 更明顯的發光效果 */
     box-sizing: border-box; /* 確保 padding 不會導致溢出 */
-    margin-left: auto;   /* 新增：水平居中 */
-    margin-right: auto;  /* 新增：水平居中 */
+
+    /* 移除之前的 margin-top 和 auto margins */
+    margin-top: 0;
+    margin-left: unset;
+    margin-right: unset;
 }
 
 .form-title {
-    font-size: 2em;
+    font-size: 1.8em; /* 調整標題大小，因為表單整體會小一點 */
     color: #FFD700; /* 與標題 H1 顏色一致 */
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 .contact-form .form-group {
-    margin-bottom: 20px; /* 每個輸入組的間距 */
+    margin-bottom: 15px; /* 每個輸入組的間距 */
     text-align: left; /* 讓標籤和輸入框靠左對齊 */
 }
 
 .contact-form label {
     display: block; /* 讓標籤獨佔一行 */
-    font-size: 1.1em;
+    font-size: 1em;
     color: #F0F8FF; /* 淺藍色 */
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
 .contact-form input[type="email"],
 .contact-form textarea {
     width: 100%;
-    padding: 12px;
+    padding: 10px; /* 調整 padding */
     border: 1px solid #ADD8E6; /* 淺藍色邊框 */
     background-color: rgba(255, 255, 255, 0.1); /* 輕微透明背景 */
     color: #F0F8FF; /* 文字顏色 */
     border-radius: 5px;
-    font-size: 1em;
+    font-size: 0.95em; /* 調整字體大小 */
     box-sizing: border-box; /* 確保 padding 不會導致寬度溢出 */
     transition: border-color 0.3s ease, background-color 0.3s ease;
 }
@@ -211,19 +218,20 @@ body, html {
 
 .contact-form textarea {
     resize: vertical; /* 允許垂直拖動調整大小 */
-    min-height: 100px; /* 最小高度 */
+    min-height: 80px; /* 最小高度 */
 }
 
 .submit-button {
     background-color: #98FB98; /* 綠色按鈕背景 */
     color: #333; /* 按鈕文字顏色 */
-    padding: 12px 25px;
+    padding: 10px 20px; /* 調整 padding */
     border: none;
     border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 1.1em; /* 調整字體大小 */
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px; /* 調整與上方 textarea 的間距 */
 }
 
 .submit-button:hover {
@@ -240,6 +248,9 @@ body, html {
         top: 15px;
         left: 15px;
     }
+    .content-wrapper {
+        padding-bottom: 70px; /* 調整底部預留空間 */
+    }
     .content {
         padding: 15px; /* 調整內邊距 */
         max-width: 80%; /* 內容的最大寬度佔比 */
@@ -252,11 +263,15 @@ body, html {
     .p4 { font-size: 1.2em; }
     .p5 { font-size: 1em; }
     .formspree-form-section {
-        margin-top: 30px; /* 調整表單間距 */
+        right: 15px;     /* 距離右邊調整 */
+        bottom: 15px;    /* 距離底部調整 */
+        max-width: 350px; /* 調整最大寬度 */
         padding: 15px;
     }
-    .form-title { font-size: 1.8em; }
-    .submit-button { font-size: 1.1em; padding: 10px 20px; }
+    .form-title { font-size: 1.6em; }
+    .contact-form label { font-size: 0.9em; }
+    .contact-form input, .contact-form textarea { font-size: 0.9em; padding: 8px; }
+    .submit-button { font-size: 1em; padding: 8px 18px; }
 }
 
 /* 針對中等手機 (例如 768px 及以下) */
@@ -265,6 +280,10 @@ body, html {
         max-width: 100px;
         top: 10px;
         left: 10px;
+    }
+    .content-wrapper {
+        padding-bottom: 25px; /* **重要：在手機上恢復內容區塊底部，表單不再固定** */
+        /* 因為表單在手機上會回到內容流中 */
     }
     .content {
         padding: 10px;
@@ -277,9 +296,22 @@ body, html {
     .p3 { font-size: 1em; margin-bottom: 15px; }
     .p4 { font-size: 1.1em; margin-bottom: 10px; }
     .p5 { font-size: 0.9em; }
+
+    /* **在手機大小螢幕上，讓表單回到內容流中，並居中顯示** */
     .formspree-form-section {
-        margin-top: 25px; /* 調整表單間距 */
+        position: static; /* 移除固定定位 */
+        right: unset;
+        bottom: unset;
+        z-index: auto;
+
+        margin-top: 25px; /* 與上方內容的間距 */
+        margin-left: auto;   /* 水平居中 */
+        margin-right: auto;  /* 水平居中 */
+        
+        max-width: 90%; /* 讓它在小螢幕上可以更寬一點 */
         padding: 10px;
+        background-color: rgba(0, 0, 0, 0.6); /* 恢復與內容區塊相似的透明度 */
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* 恢復較柔和的陰影 */
     }
     .form-title { font-size: 1.5em; }
     .submit-button { font-size: 1em; padding: 8px 18px; }
@@ -291,6 +323,9 @@ body, html {
         max-width: 80px;
         top: 5px;
         left: 5px;
+    }
+    .content-wrapper {
+        padding-bottom: 20px; /* 調整底部預留空間 */
     }
     .content {
         padding: 5px;
