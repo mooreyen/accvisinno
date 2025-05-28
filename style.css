@@ -71,7 +71,6 @@ body, html {
 }
 
 /* --- 各行文字和圖片的獨立樣式設定 --- */
-/* 注意：這些樣式在小螢幕上會被媒體查詢覆蓋，以壓縮內容 */
 
 /* 標題: "網頁努力建置中…" */
 .h1 {
@@ -148,11 +147,11 @@ body, html {
     overflow-wrap: break-word;
 }
 
-/* --- 新增的表單樣式 --- */
-.contact-form-section {
+/* --- 新增的 Formspree.io 表單區塊樣式 --- */
+.formspree-form-section {
     width: 100%; /* 表單區塊佔滿內容區塊的寬度 */
     max-width: 500px; /* 表單的最大寬度 */
-    margin-top: 40px; /* **調整與上方內容的間距** */
+    margin-top: 40px; /* 與上方內容的間距 */
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.6); /* 半透明背景 */
     border-radius: 8px; /* 圓角邊框 */
@@ -180,7 +179,6 @@ body, html {
     font-weight: bold;
 }
 
-.contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
     width: 100%;
@@ -194,7 +192,6 @@ body, html {
     transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.contact-form input[type="text"]:focus,
 .contact-form input[type="email"]:focus,
 .contact-form textarea:focus {
     border-color: #FFD700; /* 聚焦時邊框變色 */
@@ -244,7 +241,7 @@ body, html {
     .p3 { font-size: 1.1em; }
     .p4 { font-size: 1.2em; }
     .p5 { font-size: 1em; }
-    .contact-form-section {
+    .formspree-form-section {
         margin-top: 30px; /* 調整表單間距 */
         padding: 15px;
     }
@@ -270,7 +267,7 @@ body, html {
     .p3 { font-size: 1em; margin-bottom: 15px; }
     .p4 { font-size: 1.1em; margin-bottom: 10px; }
     .p5 { font-size: 0.9em; }
-    .contact-form-section {
+    .formspree-form-section {
         margin-top: 25px; /* 調整表單間距 */
         padding: 10px;
     }
@@ -296,7 +293,7 @@ body, html {
     .p3 { font-size: 0.9em; margin-bottom: 10px; }
     .p4 { font-size: 1em; margin-bottom: 8px; }
     .p5 { font-size: 0.8em; }
-    .contact-form-section {
+    .formspree-form-section {
         margin-top: 20px; /* 調整表單間距 */
         padding: 8px;
     }
