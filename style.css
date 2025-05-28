@@ -158,9 +158,10 @@ body, html {
 /* --- Formspree.io 表單區塊樣式 (無論桌面或手機都跟隨滾動條移動) --- */
 .formspree-form-section {
     position: static; /* 關鍵：讓表單從固定定位回到正常的文檔流中 */
-    right: unset;      /* 移除固定定位相關屬性 */
+    /* 以下是固定定位相關屬性，設為 unset 或直接移除，因為 position: static 會忽略它們 */
+    right: unset;      
     top: unset;
-    z-index: auto;     /* 移除固定定位相關屬性 */
+    z-index: auto;     
 
     width: 100%;       /* 確保在小螢幕下有最大寬度 */
     max-width: 400px;  /* 限制表單的最大寬度 */
@@ -253,7 +254,7 @@ body, html {
 
 ## 響應式調整 (Media Queries)
 
-因為表單現在無論螢幕尺寸都將隨滾動條移動，所以媒體查詢中關於 `.formspree-form-section` 定位的覆寫不再必要。我已經將它們移除，只保留字體大小和間距等響應式調整。
+這些媒體查詢只負責調整文字、圖片和表單容器本身的**大小和間距**，而不是改變它們的定位模式。
 
 ---
 
@@ -278,7 +279,7 @@ body, html {
     .p3 { font-size: 1.1em; }
     .p4 { font-size: 1.2em; }
     .p5 { font-size: 1em; }
-    /* .formspree-form-section 的響應式定位設置已在主要樣式中統一，這裡不再需要 */
+    /* .formspree-form-section 的定位和動畫已在主要樣式中統一，這裡不再需要特別覆寫 */
     .form-title { font-size: 1.6em; }
     .contact-form label { font-size: 0.9em; }
     .contact-form input, .contact-form textarea { font-size: 0.9em; padding: 8px; }
@@ -306,7 +307,7 @@ body, html {
     .p3 { font-size: 1em; margin-bottom: 15px; }
     .p4 { font-size: 1.1em; margin-bottom: 10px; }
     .p5 { font-size: 0.9em; }
-    /* .formspree-form-section 的響應式定位設置已在主要樣式中統一，這裡不再需要 */
+    /* .formspree-form-section 的定位和動畫已在主要樣式中統一，這裡不再需要特別覆寫 */
     .form-title { font-size: 1.5em; }
     .submit-button { font-size: 1em; padding: 8px 18px; }
 }
@@ -332,7 +333,7 @@ body, html {
     .p3 { font-size: 0.9em; margin-bottom: 10px; }
     .p4 { font-size: 1em; margin-bottom: 8px; }
     .p5 { font-size: 0.8em; }
-    /* .formspree-form-section 的響應式定位設置已在主要樣式中統一，這裡不再需要 */
+    /* .formspree-form-section 的定位和動畫已在主要樣式中統一，這裡不再需要特別覆寫 */
     .form-title { font-size: 1.2em; margin-bottom: 10px; }
     .contact-form label { font-size: 0.85em; }
     .contact-form input, .contact-form textarea { font-size: 0.8em; padding: 6px; }
