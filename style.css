@@ -51,7 +51,7 @@ body, html {
     color: white; /* 內容區塊的基礎文字顏色，個別文字可被覆蓋 */
     text-align: center;
     padding: 20px; /* 桌面預設內邊距 */
-    background-color: transparent; /* 完全透明，移除偏暗區塊 */
+    background-color: rgba(0, 0, 0, 0.3); /* 半透明背景，以便內容可讀 */
     /* 彈性高度：最小為視窗高度，內容多時自動擴展 */
     min-height: 100vh;
     height: auto; /* 讓高度根據內容自動調整 */
