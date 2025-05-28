@@ -19,7 +19,7 @@ body, html {
     height: 100%;
     /* 允許垂直滾動，確保所有內容可見 */
     overflow-x: hidden; /* 僅防止橫向滾動 */
-    overflow-y: auto;   /* 允許垂直滾動 */
+    overflow-y: auto;    /* 允許垂直滾動 */
     font-family: Arial, sans-serif; /* 建議設定一個預設字體 */
 }
 
@@ -61,7 +61,7 @@ body, html {
     justify-content: center; /* 讓子元素 content 垂直居中 */
     align-items: center; /* 讓子元素 content 水平居中 */
     box-sizing: border-box;
-    padding-top: 80px; /* 為固定表單預留頂部空間，避免內容被遮擋 */
+    /* padding-top: 80px; 這行現在可以移除了，因為表單不再固定在頂部 */
 }
 
 /* --- 原來的 content 樣式 (只負責內容居中與限制寬度) --- */
@@ -154,12 +154,12 @@ body, html {
     overflow-wrap: break-word;
 }
 
-/* --- Formspree.io 表單區塊樣式 (固定在右上方) --- */
+/* --- Formspree.io 表單區塊樣式 (改為隨滾動條移動) --- */
 .formspree-form-section {
-    position: fixed; /* 讓表單固定在視窗中 */
-    right: 20px;     /* 距離右邊 20px */
-    top: 80px;       /* 距離頂部 80px (給 LOGO 和頂部間距預留空間) */
-    z-index: 1000;   /* 確保在最上層 */
+    position: static; /* 將定位從 fixed 改為 static，使其回到正常文件流中 */
+    right: unset;      /* 移除固定定位相關屬性 */
+    top: unset;
+    z-index: auto;     /* 移除固定定位相關屬性 */
 
     width: 100%; /* 確保在小螢幕下有最大寬度 */
     max-width: 400px; /* 限制表單的最大寬度 */
@@ -170,21 +170,20 @@ body, html {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* 更明顯的發光效果 */
     box-sizing: border-box; /* 確保 padding 不會導致溢出 */
 
-    /* 移除之前的底部間距和 auto margins */
-    margin-bottom: 0;
-    margin-left: unset;
-    margin-right: unset;
+    /* 恢復自動邊距以實現水平居中，如果內容區塊是 flex 佈局則不一定需要 */
+    margin-top: 25px; /* 為表單上方增加一些間距，使其與上方內容區隔開 */
+    margin-left: auto;
+    margin-right: auto;
 
-    /* **新增漂浮動畫** */
-    animation: float 3s ease-in-out infinite; /* 設定動畫名稱、時長、時間函數、重複次數 */
+    animation: none; /* **移除漂浮動畫** */
 }
 
-/* **定義漂浮動畫的關鍵影格** */
-@keyframes float {
-    0% { transform: translateY(0); } /* 從原始位置開始 */
-    50% { transform: translateY(-8px); } /* 向上移動 8px (您可以調整這個值) */
-    100% { transform: translateY(0); } /* 返回原始位置 */
-}
+/* **移除漂浮動畫的關鍵影格定義，因為已經在 .formspree-form-section 中移除了動畫引用** */
+/* @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+} */
 
 .form-title {
     font-size: 1.8em; /* 調整標題大小，因為表單整體會小一點 */
@@ -213,7 +212,7 @@ body, html {
     border: 1px solid #ADD8E6; /* 淺藍色邊框 */
     background-color: rgba(255, 255, 255, 0.1); /* 輕微透明背景 */
     color: #F0F8FF; /* 文字顏色 */
-    border-radius: 5phx;
+    border-radius: 5px; /* 將這裡的 phx 改為 px */
     font-size: 0.95em; /* 調整字體大小 */
     box-sizing: border-box; /* 確保 padding 不會導致寬度溢出 */
     transition: border-color 0.3s ease, background-color 0.3s ease;
@@ -259,7 +258,7 @@ body, html {
         left: 15px;
     }
     .content-wrapper {
-        padding-top: 70px; /* 調整頂部預留空間 */
+        padding-top: 70px; /* 調整頂部預留空間，如果表單不再固定，這個值可以減少 */
     }
     .content {
         padding: 15px; /* 調整內邊距 */
@@ -273,12 +272,15 @@ body, html {
     .p4 { font-size: 1.2em; }
     .p5 { font-size: 1em; }
     .formspree-form-section {
-        right: 15px;     /* 距離右邊調整 */
-        top: 70px;    /* 距離頂部調整 */
+        position: static; /* 確保在平板上也跟隨滾動 */
+        right: unset;
+        top: unset;
+        margin-top: 25px; /* 調整與上方內容的間距 */
+        margin-left: auto;
+        margin-right: auto;
         max-width: 350px; /* 調整最大寬度 */
         padding: 15px;
-        /* 在這裡也應用動畫，但如果希望手機上不漂浮，則在下方的媒體查詢中覆寫 */
-        animation: float 3s ease-in-out infinite;
+        animation: none; /* 移除漂浮動畫 */
     }
     .form-title { font-size: 1.6em; }
     .contact-form label { font-size: 0.9em; }
@@ -294,7 +296,7 @@ body, html {
         left: 10px;
     }
     .content-wrapper {
-        padding-top: 25px; /* **重要：在手機上恢復內容區塊頂部，表單不再固定** */
+        padding-top: 25px; 
     }
     .content {
         padding: 10px;
@@ -308,7 +310,7 @@ body, html {
     .p4 { font-size: 1.1em; margin-bottom: 10px; }
     .p5 { font-size: 0.9em; }
 
-    /* **在手機大小螢幕上，讓表單回到內容流中，並居中顯示** */
+    /* 在手機大小螢幕上，讓表單回到內容流中，並居中顯示 */
     .formspree-form-section {
         position: static; /* 移除固定定位 */
         right: unset;
@@ -324,7 +326,7 @@ body, html {
         padding: 10px;
         background-color: rgba(0, 0, 0, 0.6); /* 恢復與內容區塊相似的透明度 */
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* 恢復較柔和的陰影 */
-        animation: none; /* **移除漂浮動畫，避免在手機上干擾佈局** */
+        animation: none; /* 移除漂浮動畫，避免在手機上干擾佈局 */
     }
     .form-title { font-size: 1.5em; }
     .submit-button { font-size: 1em; padding: 8px 18px; }
