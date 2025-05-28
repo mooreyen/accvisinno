@@ -6,10 +6,7 @@
     z-index: 999;    /* 確保在所有其他元素之上 */
     max-width: 150px; /* 設定最大寬度，您可以根據 LOGO 大小調整 */
     height: auto;    /* 高度自動，保持圖片比例 */
-    /* 增加一些陰影讓 LOGO 更突出 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 5px; /* 輕微圓角 */
-}
+    }
 
 /* 網頁整體樣式 */
 body, html {
@@ -98,7 +95,6 @@ body, html {
     max-width: 70%; /* 圖片最大寬度，響應式 */
     height: auto;
     margin: 30px 0; /* 上下間距 */
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); /* 發光效果 - 如果您想保留發光效果 */
 }
 
 /* 第二段: "你的下一站APQC" */
