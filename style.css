@@ -6,6 +6,9 @@
     z-index: 999;    /* 確保在所有其他元素之上 */
     max-width: 150px; /* 設定最大寬度，您可以根據 LOGO 大小調整 */
     height: auto;    /* 高度自動，保持圖片比例 */
+    /* 增加一些陰影讓 LOGO 更突出 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 5px; /* 輕微圓角 */
 }
 
 /* 網頁整體樣式 */
@@ -14,8 +17,9 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
-    /* 再次強制隱藏滾動條 */
-    overflow: hidden;
+    /* 允許垂直滾動，確保所有內容可見 */
+    overflow-x: hidden; /* 僅防止橫向滾動 */
+    overflow-y: auto;   /* 允許垂直滾動 */
     font-family: Arial, sans-serif; /* 建議設定一個預設字體 */
 }
 
@@ -51,15 +55,17 @@ body, html {
     text-align: center;
     padding: 20px; /* 桌面預設內邊距 */
     background-color: rgba(0, 0, 0, 0.5); /* 半透明背景，以便內容可讀 */
-    /* 核心修改：強制內容區塊高度為視窗高度 */
-    height: 100vh; /* 使用 vh 確保高度與視窗一致 */
-    overflow: hidden; /* 阻止內容區塊內部滾動條，如果內容超出會被裁剪 */
+    /* 彈性高度：最小為視窗高度，內容多時自動擴展 */
+    min-height: 100vh;
+    height: auto; /* 讓高度根據內容自動調整 */
+    overflow: visible; /* 允許內容區塊內部產生滾動條，如果內容超出 */
+
     display: flex;
     flex-direction: column;
     justify-content: center; /* 將所有內容垂直居中 */
     align-items: center;
     box-sizing: border-box; /* 確保 padding 不會導致內容溢出 */
-    /* 新增：為內容區塊設定最大寬度，並使其居中，避免在超大螢幕上內容過於分散 */
+
     max-width: 960px; /* 例如，設置一個最大寬度 */
     margin: 0 auto;   /* 居中顯示 */
 }
@@ -72,6 +78,7 @@ body, html {
     font-size: 3.5em; /* 字體大小 */
     font-weight: bold; /* 字體粗細 */
     color: #FFD700; /* 金色文字 */
+    margin-top: 0; /* 確保頂部沒有額外間距 */
     margin-bottom: 15px; /* 底部間距 */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* 文字陰影，更突出 */
     line-height: 1.2; /* 行高 */
@@ -95,6 +102,7 @@ body, html {
     max-width: 70%; /* 圖片最大寬度，響應式 */
     height: auto;
     margin: 30px 0; /* 上下間距 */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); /* 發光效果 - 如果您想保留發光效果 */
 }
 
 /* 第二段: "你的下一站APQC" */
@@ -140,6 +148,82 @@ body, html {
     overflow-wrap: break-word;
 }
 
+/* --- 新增的表單樣式 --- */
+.contact-form-section {
+    width: 100%; /* 表單區塊佔滿內容區塊的寬度 */
+    max-width: 500px; /* 表單的最大寬度 */
+    margin-top: 40px; /* **調整與上方內容的間距** */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6); /* 半透明背景 */
+    border-radius: 8px; /* 圓角邊框 */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* 發光效果 */
+    box-sizing: border-box; /* 確保 padding 不會導致溢出 */
+}
+
+.form-title {
+    font-size: 2em;
+    color: #FFD700; /* 與標題 H1 顏色一致 */
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px; /* 每個輸入組的間距 */
+    text-align: left; /* 讓標籤和輸入框靠左對齊 */
+}
+
+.contact-form label {
+    display: block; /* 讓標籤獨佔一行 */
+    font-size: 1.1em;
+    color: #F0F8FF; /* 淺藍色 */
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ADD8E6; /* 淺藍色邊框 */
+    background-color: rgba(255, 255, 255, 0.1); /* 輕微透明背景 */
+    color: #F0F8FF; /* 文字顏色 */
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* 確保 padding 不會導致寬度溢出 */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    border-color: #FFD700; /* 聚焦時邊框變色 */
+    background-color: rgba(255, 255, 255, 0.2); /* 聚焦時背景稍微變深 */
+    outline: none; /* 移除預設外框線 */
+}
+
+.contact-form textarea {
+    resize: vertical; /* 允許垂直拖動調整大小 */
+    min-height: 100px; /* 最小高度 */
+}
+
+.submit-button {
+    background-color: #98FB98; /* 綠色按鈕背景 */
+    color: #333; /* 按鈕文字顏色 */
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover {
+    background-color: #7CFC00; /* 滑鼠懸停時變深 */
+    transform: translateY(-2px); /* 輕微上移效果 */
+}
+
 /* --- 響應式調整 (Media Queries) --- */
 
 /* 針對平板和較大的手機 (例如 1024px 及以下) */
@@ -150,15 +234,22 @@ body, html {
         left: 15px;
     }
     .content {
-        padding: 15px; /* 統一內邊距，不再額外增加底部空間，讓 flex-grow 處理 */
+        padding: 15px; /* 調整內邊距 */
+        max-width: 80%;
     }
     .h1 { font-size: 2.8em; }
     .p1 { font-size: 1.4em; }
-    .gif { max-width: 75%; margin: 20px 0; } /* 縮小 GIF 的邊距 */
+    .gif { max-width: 75%; margin: 20px 0; }
     .p2 { font-size: 1.6em; margin-top: 20px; }
     .p3 { font-size: 1.1em; }
     .p4 { font-size: 1.2em; }
     .p5 { font-size: 1em; }
+    .contact-form-section {
+        margin-top: 30px; /* 調整表單間距 */
+        padding: 15px;
+    }
+    .form-title { font-size: 1.8em; }
+    .submit-button { font-size: 1.1em; padding: 10px 20px; }
 }
 
 /* 針對中等手機 (例如 768px 及以下) */
@@ -170,14 +261,21 @@ body, html {
     }
     .content {
         padding: 10px;
+        max-width: 90%;
     }
     .h1 { font-size: 2.2em; margin-bottom: 10px; }
     .p1 { font-size: 1.2em; margin-bottom: 20px; }
-    .gif { max-width: 85%; margin: 15px 0; } /* 進一步縮小 GIF 邊距 */
+    .gif { max-width: 85%; margin: 15px 0; }
     .p2 { font-size: 1.4em; margin-top: 15px; }
     .p3 { font-size: 1em; margin-bottom: 15px; }
     .p4 { font-size: 1.1em; margin-bottom: 10px; }
     .p5 { font-size: 0.9em; }
+    .contact-form-section {
+        margin-top: 25px; /* 調整表單間距 */
+        padding: 10px;
+    }
+    .form-title { font-size: 1.5em; }
+    .submit-button { font-size: 1em; padding: 8px 18px; }
 }
 
 /* 針對小型手機 (例如 480px 及以下) */
@@ -189,12 +287,21 @@ body, html {
     }
     .content {
         padding: 5px;
+        max-width: 95%;
     }
     .h1 { font-size: 1.6em; margin-bottom: 8px; }
     .p1 { font-size: 1em; margin-bottom: 15px; }
-    .gif { max-width: 95%; margin: 10px 0; } /* 更進一步縮小 GIF 邊距 */
+    .gif { max-width: 95%; margin: 10px 0; }
     .p2 { font-size: 1.2em; margin-top: 10px; }
     .p3 { font-size: 0.9em; margin-bottom: 10px; }
     .p4 { font-size: 1em; margin-bottom: 8px; }
     .p5 { font-size: 0.8em; }
+    .contact-form-section {
+        margin-top: 20px; /* 調整表單間距 */
+        padding: 8px;
+    }
+    .form-title { font-size: 1.2em; margin-bottom: 10px; }
+    .contact-form label { font-size: 0.85em; }
+    .contact-form input, .contact-form textarea { font-size: 0.8em; padding: 6px; }
+    .submit-button { font-size: 0.9em; padding: 6px 12px; }
 }
